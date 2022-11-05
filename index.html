@@ -10,20 +10,54 @@
 	<body>
 		<div class="container-fluid">
 			<h1>Add Div</h1>
-			<div class="h4">Example</div>
-			<div id="div0" style="display: none" class="border border-primary rounded mb-2 p-3">
-				Div
-				<button id="btnDelete" class="btn btn-primary btn-sm float-end" onClick="deleteDiv(this)">X</button>
-			</div>
-			<div id="main">
-				<div id="div1" class="border border-primary rounded mb-2 p-3">
-					<input type="text" name="name" id="name" placeholder="Enter Name" />
-					<input type="text" name="amount" id="amount" placeholder="Enter Amount" />
+				<div id="div0" style="display: none" class="border border-primary rounded mb-2 mx-2 p-3">
+					<div class="row">
+						<div class="col-4">
+							<input type="text" name="name_" id="name_" placeholder="Enter Name" class="form-control" />
+						</div>
+						<div class="col-3">
+							<input type="text" name="amount_" id="amount_" placeholder="Enter Amount" class="form-control" />
+						</div>
+						<div class="col-4">
+							<select name="type_" id="type_" class="form-control">
+								<option value="1">Type 1</option>
+								<option value="2">Type 2</option>
+								<option value="3">Type 3</option>
+							</select>
+						</div>
+						<div class="col-1">
+							<button type="button" class="btn btn-danger float-right" onclick="deleteDiv(this)">X</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			<button id="btn0" class="btn btn-primary btn-sm" onClick="AddDiv()">
-				Add Div
-			</button>
+			<div id="main">
+				<div id="div1" class="border border-primary rounded mb-2 mx-2 p-3">
+					<div class="row">
+						<div class="col-4">
+							<input type="text" name="name_1" id="name_1" placeholder="Enter Name" class="form-control" />
+						</div>
+						<div class="col-3">
+							<input type="text" name="amount_1" id="amount_1" placeholder="Enter Amount" class="form-control" />
+						</div>
+						<div class="col-4">
+							<select name="type1" id="type_1" class="form-control">
+								<option value="1">Type 1</option>
+								<option value="2">Type 2</option>
+								<option value="3">Type 3</option>
+							</select>
+						</div>
+						<div class="col-1">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fw-bold mb-2 p-2">
+			Total Amount: <span id="totalAmount">0</span>
+			</div>
+			<div class="mb-4 p-2">
+				<button id="btn0" class="btn btn-primary btn-sm" onClick="AddDiv()">Add Div</button>
+			</div>
 		</div>
 		<script src="main.js"></script>
 		<script
