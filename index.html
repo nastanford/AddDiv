@@ -80,42 +80,76 @@
 			</div>
 		</div>
 		<script>
-// Add Div from hidden Div
-function AddDiv()
-{
-  // copy hidden div change name and add to main div
-  var div0 = document.getElementById('div0');
-  var div0Clone = div0.cloneNode(true);
-  div0Clone.id = 'div' + (document.getElementById('main').childElementCount + 1);
-  div0Clone.style.display = 'block';
-  // rename input fields
-  var inputs = div0Clone.getElementsByTagName('input');
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].id = inputs[i].id + (document.getElementById('main').childElementCount + 1);
-    inputs[i].name = inputs[i].name + (document.getElementById('main').childElementCount + 1);
-  }
-  // rename select fields
-  var selects = div0Clone.getElementsByTagName('select');
-  for (var i = 0; i < selects.length; i++) {
-    selects[i].id = selects[i].id + (document.getElementById('main').childElementCount + 1);
-    selects[i].name = selects[i].name + (document.getElementById('main').childElementCount + 1);
-  }
-  document.getElementById('main').appendChild(div0Clone);
+      // global variable Count to keep track of number of Fields
+      var fieldsCount = 1;
 
-	// rename label for fields
-	var labels = div0Clone.getElementsByTagName('label');
-	for (var i = 0; i < labels.length; i++) {
-		labels[i].setAttribute('for', labels[i].getAttribute('for') + (document.getElementById('main').childElementCount));
-	}
+      // Add Div from hidden Div
+      function AddDiv()
+      {
+        // increment Field count
+        fieldsCount++;
 
-}		
+        // copy hidden div change name and add to main div
+        var div0 = document.getElementById('div0');
+        var div0Clone = div0.cloneNode(true);
+        div0Clone.id = 'div' + fieldsCount;
+        div0Clone.style.display = 'block';
 
-// function to update employee dropdown in div with json data
-function getEmployees(id)
-{
-	console.log(id);
-}
+        // rename input fields
+        var inputs = div0Clone.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].id = inputs[i].id + fieldsCount;
+          inputs[i].name = inputs[i].name + fieldsCount;
+        }
+        // rename select fields
+        var selects = div0Clone.getElementsByTagName('select');
+        for (var i = 0; i < selects.length; i++) {
+          selects[i].id = selects[i].id + fieldsCount;
+          selects[i].name = selects[i].name + fieldsCount;
+        }
+        document.getElementById('main').appendChild(div0Clone);
 
+        // rename label for fields
+        var labels = div0Clone.getElementsByTagName('label');
+        for (var i = 0; i < labels.length; i++) {
+          labels[i].setAttribute('for', labels[i].getAttribute('for') + fieldsCount);
+        }
+
+      }		
+
+      // Delete the div
+      function deleteDiv(btn) {
+        var div = btn.parentNode.parentNode.parentNode;
+        div.parentNode.removeChild(div);
+        updateAmount();
+      }
+
+      // Update the Amount
+      function updateAmount() {
+        var totalAmount = 0;
+        // get all the inputs
+        var inputs = document.getElementsByTagName('input');
+        // loop through all inputs starts with amount and get amount
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].id.startsWith('amount_')) {
+            var amount = inputs[i].value;
+            if (amount != '') {
+              // If amount is a dollar amount or an amount with a decimal.
+              totalAmount += parseFloat(amount);
+              // if amount is without decimals.
+              // totalAmount += parseInt(amount);
+            }
+          }
+        }
+        // update total amount
+        document.getElementById("totalAmount").innerHTML = totalAmount;
+      }
+
+      // function to update employee dropdown in div with json data
+      function getEmployees(id)
+      {
+        console.log(id);
+      }
 		</script>
 		<script src="main.js"></script>
 		<script
